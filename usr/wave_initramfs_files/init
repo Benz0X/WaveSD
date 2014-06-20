@@ -23,8 +23,8 @@ busybox echo "force_recovery: $force_recovery"
 busybox mkdir /system
 busybox mkdir /cache
 busybox mkdir /data
-busybox mount -t ext4 /dev/block/mmcblk1p3 /system
-busybox mount -t ext4 /dev/block/mmcblk1p2 /cache
+busybox mount -t ext4 /dev/block/mmcblk0p2 /system
+busybox mount -t ext4 /dev/block/mmcblk0p1 /cache
 
 image=/stage1/ramdisk.img
 
