@@ -1,5 +1,5 @@
 assert(getprop("ro.product.device") == "wave" || getprop("ro.build.product") == "wave" || abort("This package is for \"wave\" devices; this is a \"" + getprop("ro.product.device") + "\"."););
-run_program("/sbin/busybox", "mount", "-t", "ext4", "/dev/block/mmcblk1p3", "/system");
+run_program("/sbin/busybox", "mount", "-t", "ext4", "sym", "/system");
 package_extract_file("system/bin/backuptool.sh", "/tmp/backuptool.sh");
 package_extract_file("system/bin/backuptool.functions", "/tmp/backuptool.functions");
 set_metadata("/tmp/backuptool.sh", "uid", 0, "gid", 0, "mode", 0755);
@@ -7,8 +7,8 @@ set_metadata("/tmp/backuptool.functions", "uid", 0, "gid", 0, "mode", 0644);
 run_program("/tmp/backuptool.sh", "backup");
 run_program("/sbin/busybox", "umount", "/system");
 show_progress(0.100000, 0);
-format("ext4", "EMMC", "/dev/block/mmcblk1p3", "0", "/system");
-run_program("/sbin/busybox", "mount", "-t", "ext4", "/dev/block/mmcblk1p3", "/system");
+format("ext4", "EMMC", "sym", "0", "/system");
+run_program("/sbin/busybox", "mount", "-t", "ext4", "sym", "/system");
 show_progress(0.700000, 30);
 package_extract_dir("system", "/system");
 symlink("../bin/fsck.f2fs", "/system/bin/dump.f2fs");
